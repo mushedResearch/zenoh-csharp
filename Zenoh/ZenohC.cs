@@ -716,14 +716,14 @@ internal unsafe struct ZOwnedReplyChannelClosure
 // } z_owned_reply_channel_t;
 // --------------------------------
 [StructLayout(LayoutKind.Sequential)]
-internal struct ZOwnedReplyChannel
+internal unsafe struct ZOwnedReplyChannel
 {
     internal ZOwnedClosureReply send;
     internal ZOwnedReplyChannelClosure recv;
 }
 
 [StructLayout(LayoutKind.Sequential)]
-public struct ConsolidationStrategy // z_consolidation_strategy_t
+public unsafe struct ConsolidationStrategy // z_consolidation_strategy_t
 {
     public ConsolidationMode firstRouters;
     public ConsolidationMode lastRouters;
