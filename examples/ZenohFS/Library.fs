@@ -11,318 +11,319 @@ open Microsoft.FSharp.Core.Operators
 open System
 open System.Diagnostics
 open System.Runtime.InteropServices
-
-module Types =
-    
-    [<Struct; StructLayout(LayoutKind.Sequential);>]
-    type z_owned_bytes_t =
-        val mutable _0 : byte
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_bytes_t() =
-        member val _this = Unchecked.defaultof<z_owned_bytes_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_bytes_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_slice_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_slice_t() =
-        member val _this = Unchecked.defaultof<z_owned_slice_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_view_slice_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_slice_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_string_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_string_t() =
-        member val _this = Unchecked.defaultof<z_owned_string_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_view_string_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_string_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_string_array_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_string_array_t() =
-        member val _this = Unchecked.defaultof<z_owned_string_array_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_string_array_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_sample_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_sample_t() =
-        member val _this = Unchecked.defaultof<z_owned_sample_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_sample_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_bytes_reader_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_bytes_writer_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_bytes_writer_t() =
-        member val _this = Unchecked.defaultof<z_owned_bytes_writer_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_bytes_writer_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_bytes_slice_iterator_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_encoding_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_encoding_t() =
-        member val _this = Unchecked.defaultof<z_owned_encoding_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_encoding_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_reply_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_reply_t() =
-        member val _this = Unchecked.defaultof<z_owned_reply_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_reply_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_reply_err_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_reply_err_t() =
-        member val _this = Unchecked.defaultof<z_owned_reply_err_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_reply_err_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_query_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_query_t() =
-        member val _this = Unchecked.defaultof<z_owned_query_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_query_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_queryable_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_queryable_t() =
-        member val _this = Unchecked.defaultof<z_owned_queryable_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_queryable_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_keyexpr_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_keyexpr_t() =
-        member val _this = Unchecked.defaultof<z_owned_keyexpr_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_view_keyexpr_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_keyexpr_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_session_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_session_t() =
-        member val _this = Unchecked.defaultof<z_owned_session_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_session_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_config_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_config_t() =
-        member val _this = Unchecked.defaultof<z_owned_config_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_config_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_timestamp_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_publisher_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_publisher_t() =
-        member val _this = Unchecked.defaultof<z_owned_publisher_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_publisher_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_subscriber_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_subscriber_t() =
-        member val _this = Unchecked.defaultof<z_owned_subscriber_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_subscriber_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_owned_hello_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_moved_hello_t() =
-        member val _this = Unchecked.defaultof<z_owned_hello_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_loaned_hello_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type ze_owned_serializer_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type ze_moved_serializer_t() =
-        member val _this = Unchecked.defaultof<ze_owned_serializer_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type ze_loaned_serializer_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type ze_deserializer_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_get_options_t() =
-        member val target = Unchecked.defaultof<z_query_target_t> with get, set
-        member val consolidation = Unchecked.defaultof<z_query_consolidation_t> with get, set
-        member val payload = Unchecked.defaultof<obj> with get, set
-        member val encoding = Unchecked.defaultof<obj> with get, set
-        member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
-        [<MarshalAs>]
-        member val is_express = Unchecked.defaultof<System.Boolean> with get, set
-        member val allowed_destination = Unchecked.defaultof<zc_locality_t> with get, set
-        member val accept_replies = Unchecked.defaultof<zc_reply_keyexpr_t> with get, set
-        member val priority = Unchecked.defaultof<z_priority_t> with get, set
-        member val source_info = Unchecked.defaultof<obj> with get, set
-        member val attachment = Unchecked.defaultof<obj> with get, set
-        member val timeout_ms = Unchecked.defaultof<System.UInt64> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_query_consolidation_t() =
-        member val mode = Unchecked.defaultof<z_consolidation_mode_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type zc_liveliness_declaration_options_t() =
-        member val _dummy = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type zc_liveliness_subscriber_options_t() =
-        [<MarshalAs>]
-        member val history = Unchecked.defaultof<System.Boolean> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type zc_liveliness_get_options_t() =
-        member val timeout_ms = Unchecked.defaultof<System.UInt32> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type ze_publication_cache_options_t() =
-        member val queryable_prefix = Unchecked.defaultof<obj> with get, set
-        member val queryable_origin = Unchecked.defaultof<zc_locality_t> with get, set
-        [<MarshalAs>]
-        member val queryable_complete = Unchecked.defaultof<System.Boolean> with get, set
-        member val history = Unchecked.defaultof<nuint> with get, set
-        member val resources_limit = Unchecked.defaultof<nuint> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_publisher_options_t() =
-        member val encoding = Unchecked.defaultof<obj> with get, set
-        member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
-        member val priority = Unchecked.defaultof<z_priority_t> with get, set
-        [<MarshalAs>]
-        member val is_express = Unchecked.defaultof<System.Boolean> with get, set
-        member val reliability = Unchecked.defaultof<z_reliability_t> with get, set
-        member val allowed_destination = Unchecked.defaultof<zc_locality_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_publisher_put_options_t() =
-        member val encoding = Unchecked.defaultof<obj> with get, set
-        member val timestamp = Unchecked.defaultof<obj> with get, set
-        member val source_info = Unchecked.defaultof<obj> with get, set
-        member val attachment = Unchecked.defaultof<obj> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_publisher_delete_options_t() =
-        member val timestamp = Unchecked.defaultof<obj> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_put_options_t() =
-        member val encoding = Unchecked.defaultof<obj> with get, set
-        member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
-        member val priority = Unchecked.defaultof<z_priority_t> with get, set
-        [<MarshalAs>]
-        member val is_express = Unchecked.defaultof<System.Boolean> with get, set
-        member val timestamp = Unchecked.defaultof<obj> with get, set
-        member val reliability = Unchecked.defaultof<z_reliability_t> with get, set
-        member val allowed_destination = Unchecked.defaultof<zc_locality_t> with get, set
-        member val source_info = Unchecked.defaultof<obj> with get, set
-        member val attachment = Unchecked.defaultof<obj> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_delete_options_t() =
-        member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
-        member val priority = Unchecked.defaultof<z_priority_t> with get, set
-        [<MarshalAs>]
-        member val is_express = Unchecked.defaultof<System.Boolean> with get, set
-        member val timestamp = Unchecked.defaultof<obj> with get, set
-        member val reliability = Unchecked.defaultof<z_reliability_t> with get, set
-        member val allowed_destination = Unchecked.defaultof<zc_locality_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_queryable_options_t() =
-        [<MarshalAs>]
-        member val complete = Unchecked.defaultof<System.Boolean> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_query_reply_options_t() =
-        member val encoding = Unchecked.defaultof<obj> with get, set
-        member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
-        member val priority = Unchecked.defaultof<z_priority_t> with get, set
-        [<MarshalAs>]
-        member val is_express = Unchecked.defaultof<System.Boolean> with get, set
-        member val timestamp = Unchecked.defaultof<obj> with get, set
-        member val source_info = Unchecked.defaultof<obj> with get, set
-        member val attachment = Unchecked.defaultof<obj> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_query_reply_err_options_t() =
-        member val encoding = Unchecked.defaultof<obj> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_query_reply_del_options_t() =
-        member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
-        member val priority = Unchecked.defaultof<z_priority_t> with get, set
-        [<MarshalAs>]
-        member val is_express = Unchecked.defaultof<System.Boolean> with get, set
-        member val timestamp = Unchecked.defaultof<obj> with get, set
-        member val source_info = Unchecked.defaultof<obj> with get, set
-        member val attachment = Unchecked.defaultof<obj> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type ze_querying_subscriber_options_t() =
-        member val allowed_origin = Unchecked.defaultof<zc_locality_t> with get, set
-        member val query_selector = Unchecked.defaultof<obj> with get, set
-        member val query_target = Unchecked.defaultof<z_query_target_t> with get, set
-        member val query_consolidation = Unchecked.defaultof<z_query_consolidation_t> with get, set
-        member val query_accept_replies = Unchecked.defaultof<zc_reply_keyexpr_t> with get, set
-        member val query_timeout_ms = Unchecked.defaultof<System.UInt64> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_scout_options_t() =
-        member val timeout_ms = Unchecked.defaultof<System.UInt64> with get, set
-        member val what = Unchecked.defaultof<z_what_t> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_open_options_t() =
-        member val _dummy = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_close_options_t() =
-        member val _dummy = Unchecked.defaultof<System.Byte> with get, set
-    [<Struct; StructLayout(LayoutKind.Sequential)>]
-    type z_subscriber_options_t() =
-        member val _0 = Unchecked.defaultof<System.Byte> with get, set
-        
-    type z_sample_kind_t =
-        | PUT = 0u
-        | DELETE = 1u
+open ZenohCS
+//
+// module Types =
+//     
+//     [<Struct; StructLayout(LayoutKind.Sequential);>]
+//     type z_owned_bytes_t =
+//         val mutable _0 : byte
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_bytes_t() =
+//         member val _this = Unchecked.defaultof<z_owned_bytes_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_bytes_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_slice_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_slice_t() =
+//         member val _this = Unchecked.defaultof<z_owned_slice_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_view_slice_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_slice_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_string_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_string_t() =
+//         member val _this = Unchecked.defaultof<z_owned_string_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_view_string_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_string_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_string_array_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_string_array_t() =
+//         member val _this = Unchecked.defaultof<z_owned_string_array_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_string_array_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_sample_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_sample_t() =
+//         member val _this = Unchecked.defaultof<z_owned_sample_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_sample_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_bytes_reader_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_bytes_writer_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_bytes_writer_t() =
+//         member val _this = Unchecked.defaultof<z_owned_bytes_writer_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_bytes_writer_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_bytes_slice_iterator_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_encoding_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_encoding_t() =
+//         member val _this = Unchecked.defaultof<z_owned_encoding_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_encoding_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_reply_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_reply_t() =
+//         member val _this = Unchecked.defaultof<z_owned_reply_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_reply_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_reply_err_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_reply_err_t() =
+//         member val _this = Unchecked.defaultof<z_owned_reply_err_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_reply_err_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_query_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_query_t() =
+//         member val _this = Unchecked.defaultof<z_owned_query_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_query_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_queryable_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_queryable_t() =
+//         member val _this = Unchecked.defaultof<z_owned_queryable_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_queryable_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_keyexpr_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_keyexpr_t() =
+//         member val _this = Unchecked.defaultof<z_owned_keyexpr_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_view_keyexpr_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_keyexpr_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_session_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_session_t() =
+//         member val _this = Unchecked.defaultof<z_owned_session_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_session_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_config_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_config_t() =
+//         member val _this = Unchecked.defaultof<z_owned_config_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_config_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_timestamp_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_publisher_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_publisher_t() =
+//         member val _this = Unchecked.defaultof<z_owned_publisher_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_publisher_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_subscriber_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_subscriber_t() =
+//         member val _this = Unchecked.defaultof<z_owned_subscriber_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_subscriber_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_owned_hello_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_moved_hello_t() =
+//         member val _this = Unchecked.defaultof<z_owned_hello_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_loaned_hello_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type ze_owned_serializer_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type ze_moved_serializer_t() =
+//         member val _this = Unchecked.defaultof<ze_owned_serializer_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type ze_loaned_serializer_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type ze_deserializer_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_get_options_t() =
+//         member val target = Unchecked.defaultof<z_query_target_t> with get, set
+//         member val consolidation = Unchecked.defaultof<z_query_consolidation_t> with get, set
+//         member val payload = Unchecked.defaultof<obj> with get, set
+//         member val encoding = Unchecked.defaultof<obj> with get, set
+//         member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
+//         [<MarshalAs>]
+//         member val is_express = Unchecked.defaultof<System.Boolean> with get, set
+//         member val allowed_destination = Unchecked.defaultof<zc_locality_t> with get, set
+//         member val accept_replies = Unchecked.defaultof<zc_reply_keyexpr_t> with get, set
+//         member val priority = Unchecked.defaultof<z_priority_t> with get, set
+//         member val source_info = Unchecked.defaultof<obj> with get, set
+//         member val attachment = Unchecked.defaultof<obj> with get, set
+//         member val timeout_ms = Unchecked.defaultof<System.UInt64> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_query_consolidation_t() =
+//         member val mode = Unchecked.defaultof<z_consolidation_mode_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type zc_liveliness_declaration_options_t() =
+//         member val _dummy = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type zc_liveliness_subscriber_options_t() =
+//         [<MarshalAs>]
+//         member val history = Unchecked.defaultof<System.Boolean> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type zc_liveliness_get_options_t() =
+//         member val timeout_ms = Unchecked.defaultof<System.UInt32> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type ze_publication_cache_options_t() =
+//         member val queryable_prefix = Unchecked.defaultof<obj> with get, set
+//         member val queryable_origin = Unchecked.defaultof<zc_locality_t> with get, set
+//         [<MarshalAs>]
+//         member val queryable_complete = Unchecked.defaultof<System.Boolean> with get, set
+//         member val history = Unchecked.defaultof<nuint> with get, set
+//         member val resources_limit = Unchecked.defaultof<nuint> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_publisher_options_t() =
+//         member val encoding = Unchecked.defaultof<obj> with get, set
+//         member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
+//         member val priority = Unchecked.defaultof<z_priority_t> with get, set
+//         [<MarshalAs>]
+//         member val is_express = Unchecked.defaultof<System.Boolean> with get, set
+//         member val reliability = Unchecked.defaultof<z_reliability_t> with get, set
+//         member val allowed_destination = Unchecked.defaultof<zc_locality_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_publisher_put_options_t() =
+//         member val encoding = Unchecked.defaultof<obj> with get, set
+//         member val timestamp = Unchecked.defaultof<obj> with get, set
+//         member val source_info = Unchecked.defaultof<obj> with get, set
+//         member val attachment = Unchecked.defaultof<obj> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_publisher_delete_options_t() =
+//         member val timestamp = Unchecked.defaultof<obj> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_put_options_t() =
+//         member val encoding = Unchecked.defaultof<obj> with get, set
+//         member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
+//         member val priority = Unchecked.defaultof<z_priority_t> with get, set
+//         [<MarshalAs>]
+//         member val is_express = Unchecked.defaultof<System.Boolean> with get, set
+//         member val timestamp = Unchecked.defaultof<obj> with get, set
+//         member val reliability = Unchecked.defaultof<z_reliability_t> with get, set
+//         member val allowed_destination = Unchecked.defaultof<zc_locality_t> with get, set
+//         member val source_info = Unchecked.defaultof<obj> with get, set
+//         member val attachment = Unchecked.defaultof<obj> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_delete_options_t() =
+//         member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
+//         member val priority = Unchecked.defaultof<z_priority_t> with get, set
+//         [<MarshalAs>]
+//         member val is_express = Unchecked.defaultof<System.Boolean> with get, set
+//         member val timestamp = Unchecked.defaultof<obj> with get, set
+//         member val reliability = Unchecked.defaultof<z_reliability_t> with get, set
+//         member val allowed_destination = Unchecked.defaultof<zc_locality_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_queryable_options_t() =
+//         [<MarshalAs>]
+//         member val complete = Unchecked.defaultof<System.Boolean> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_query_reply_options_t() =
+//         member val encoding = Unchecked.defaultof<obj> with get, set
+//         member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
+//         member val priority = Unchecked.defaultof<z_priority_t> with get, set
+//         [<MarshalAs>]
+//         member val is_express = Unchecked.defaultof<System.Boolean> with get, set
+//         member val timestamp = Unchecked.defaultof<obj> with get, set
+//         member val source_info = Unchecked.defaultof<obj> with get, set
+//         member val attachment = Unchecked.defaultof<obj> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_query_reply_err_options_t() =
+//         member val encoding = Unchecked.defaultof<obj> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_query_reply_del_options_t() =
+//         member val congestion_control = Unchecked.defaultof<z_congestion_control_t> with get, set
+//         member val priority = Unchecked.defaultof<z_priority_t> with get, set
+//         [<MarshalAs>]
+//         member val is_express = Unchecked.defaultof<System.Boolean> with get, set
+//         member val timestamp = Unchecked.defaultof<obj> with get, set
+//         member val source_info = Unchecked.defaultof<obj> with get, set
+//         member val attachment = Unchecked.defaultof<obj> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type ze_querying_subscriber_options_t() =
+//         member val allowed_origin = Unchecked.defaultof<zc_locality_t> with get, set
+//         member val query_selector = Unchecked.defaultof<obj> with get, set
+//         member val query_target = Unchecked.defaultof<z_query_target_t> with get, set
+//         member val query_consolidation = Unchecked.defaultof<z_query_consolidation_t> with get, set
+//         member val query_accept_replies = Unchecked.defaultof<zc_reply_keyexpr_t> with get, set
+//         member val query_timeout_ms = Unchecked.defaultof<System.UInt64> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_scout_options_t() =
+//         member val timeout_ms = Unchecked.defaultof<System.UInt64> with get, set
+//         member val what = Unchecked.defaultof<z_what_t> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_open_options_t() =
+//         member val _dummy = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_close_options_t() =
+//         member val _dummy = Unchecked.defaultof<System.Byte> with get, set
+//     [<Struct; StructLayout(LayoutKind.Sequential)>]
+//     type z_subscriber_options_t() =
+//         member val _0 = Unchecked.defaultof<System.Byte> with get, set
+//         
+//     type z_sample_kind_t =
+//         | PUT = 0u
+//         | DELETE = 1u
 (* ERROR UnknownNode "EnumDeclarationSyntax" public enum z_sample_kind_t : uint
 {
     PUT = 0,
@@ -396,10 +397,14 @@ module Types =
     ROUTER_PEER_CLIENT,
 } *)
 
-type z_owned_session_t
+[<Struct; StructLayout(LayoutKind.Sequential)>]
+type z_owned_bytes_t =
+    struct
+        val mutable _0: byte array
+    end
 
 module Imports =
-    
+    open ZenohCS
     [<Literal>]
     let __DllName = "zenohc"
     
@@ -407,23 +412,53 @@ module Imports =
     extern z_loaned_session_t* z_session_loan(z_owned_session_t*);
     
     [<DllImport(__DllName, EntryPoint = "z_internal_session_null", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)>]
-    extern unit z_internal_session_null(nativeptr<z_owned_session_t> );
+    extern void z_internal_session_null(z_owned_session_t* );
 
     [<DllImport(__DllName, EntryPoint = "z_open_options_default", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)>]
-    extern void z_open_options_default(nativeptr<MaybeUninit> this_);
+    extern void z_open_options_default(z_open_options_t* );
 
     [<DllImport(__DllName, EntryPoint = "z_open", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)>]
-    extern sbyte z_open(nativeptr<z_owned_session_t> this_, nativeptr<z_moved_config_t> config, nativeptr<z_open_options_t> options);
+    extern sbyte z_open(z_owned_session_t*, z_moved_config_t*, z_open_options_t*);
+
+    [<DllImport(__DllName, EntryPoint = "zc_config_from_file", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)>]
+    extern sbyte zc_config_from_file(z_owned_config_t*, byte[])
+
+    /// <summary>
+    ///  Constructs a configuration by parsing a file path stored in ZENOH_CONFIG environmental variable.
+    ///
+    ///  Returns 0 in case of success, negative error code otherwise.
+    /// </summary>
+    [<DllImport(__DllName, EntryPoint = "zc_config_from_env", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)>]
+    extern sbyte zc_config_from_env(z_owned_config_t*)
+    
+
+    [<DllImport(__DllName, EntryPoint = "z_config_drop", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)>]
+    extern void z_config_drop(z_moved_config_t*)
+
+    [<DllImport(__DllName, EntryPoint = "z_internal_config_null", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)>]
+    extern void z_internal_config_null(z_owned_config_t*)
 
 module Session =
     
-
+    open ZenohCS
+    open Imports
     
-   
     
-    type Session() =
+    type Session(config : string) =
         
-        let session = 
+        
+        let _options = NativePtr.nullPtr
+        let _config = NativePtr.nullPtr
+        let _session = NativePtr.nullPtr
+        do z_open_options_default(_options)
+        
+        do match zc_config_from_env(_config) with
+        | 0y -> ()
+        | _ -> failwith "Failed to load config from env"
+        
+        do match z_open(_session, _config, _options) with
+        | 0y -> ()
+        | _ -> failwith "Failed to open session"
         
         interface IDisposable with
-            this.Dispose() = ()
+            member this.Dispose() = ()

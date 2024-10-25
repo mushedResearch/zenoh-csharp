@@ -4,7 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-namespace Zenoh;
+namespace ZenohCS;
 
 [StructLayout(LayoutKind.Sequential)]
 public unsafe partial struct z_owned_source_info_t
@@ -593,7 +593,7 @@ public enum z_query_target_t : uint
 
 public enum z_consolidation_mode_t : uint
 {
-    AUTO = -1,
+    //AUTO = -1,
     NONE = 0,
     MONOTONIC = 1,
     LATEST = 2,
